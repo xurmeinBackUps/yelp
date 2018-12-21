@@ -29,7 +29,7 @@
 </div>
 
 <section *ngIf="food">
-  <h2>REFRESH THE PAGE TO SEARCH AGAIN</h2>
+  <h2><button (click)="REFRESH()">REFRESH</button> THE PAGE TO SEARCH AGAIN</h2>
   <h3 *ngIf="food.name">
     <a href="food.url" *ngIf="food.url" target="_blank">{{food.name}}</a>
   </h3>

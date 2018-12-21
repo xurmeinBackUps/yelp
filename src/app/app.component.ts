@@ -26,7 +26,9 @@ export class AppComponent {
     })
   }
 
-
+  REFRESH(): void{
+    document.location.reload()
+  }
   
   async foodMe(){
     await this.yelp.getFoods(

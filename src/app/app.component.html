@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align: center">
+<div style="text-align: center" *ngIf="!food">
   <h1>
     {{ title }}!
   </h1>
@@ -29,9 +29,12 @@
 </div>
 
 <section *ngIf="food">
+  <h2>REFRESH THE PAGE TO SEARCH AGAIN</h2>
   <h3 *ngIf="food.name">
     <a href="food.url" *ngIf="food.url" target="_blank">{{food.name}}</a>
   </h3>
+  <p *ngIf="food.location.display_address">{{food.location.display_address}}</p> 
+  <h6 *ngIf="food.location.country.value===US">THESE UNITED STATES OF AMERICA</h6>
   <p *ngIf="food.transactions">offers: {{food.transactions}}</p>
   <p>rating:</p><img src="../assets/stars/regular_0.png" *ngIf="food.rating=== 0.0" /><p *ngIf="food.review_count">{{food.review_count}} reviews</p>
                 <img src="../assets/stars/regular_1.png" *ngIf="food.rating=== 1.0" />
@@ -45,11 +48,7 @@
                 <img src="../assets/stars/regular_5.png" *ngIf="food.rating === 5.0" />
   <p *ngIf="food.display_phone">{{food.display_phone}}</p>
 
-  <!-- <p *ngif="food.location">{{food.location}}</p> -->
-  <!-- <p *ngIf="food.location.city">{{food.location.city}}</p>
-  <p *ngIf="food.location.state">{{food.location.state}}</p>
-  <p *ngIf="food.location.zip_code">{{food.location.zip_code}}</p>
-  <h6 *ngIf="food.location.country.value===US">THESE UNITED STATES OF AMERICA</h6> -->
+ 
   <img src="{{food.image_url}}" *ngIf="food.image_url" />
 
 </section>

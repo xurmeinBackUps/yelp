@@ -13,7 +13,7 @@ import { YelpSearchService } from './yelp-search.service';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     ],
   providers: [YelpSearchService],
   bootstrap: [AppComponent]

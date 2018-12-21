@@ -10,8 +10,8 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 export class AppComponent { 
   title = 'FeedMeNOW!';
   search : FormGroup
-  results : Results
- 
+  food : Object
+  
  
     
   constructor(
@@ -20,24 +20,18 @@ export class AppComponent {
   ) { }
 
   ngOnInit(){this.search = this.fb.group({
-    zip: new FormControl(),
-    price: new FormControl()
+    price: new FormControl(),
+    zip: new FormControl()
     })
   }
   
-  async foodMe() {
+  async foodMe(){
     await this.yelp.getFoods(
       event,
       this.search.value.price,
       this.search.value.zip
-    ).subscribe(food => 
-      {this.results = food.businesses[Math.floor(Math.random() * 15)]
+    ).subscribe(res => 
+      {this.food =  res.businesses[Math.floor(Math.random() * 15)]
     })
   }
 }
-
-export class Results{
-  results : any
-}
-
-

@@ -10,7 +10,8 @@ const APIKey = 'f3gtKN6DeuF6Kq69kp4HDEsIdfi4JLiUq8aNMXQqhaSMyppy4rBLHRwlGs1mQkld
 const Options = {
   headers : new HttpHeaders({
     'Content-Type':'application/json',
-    'Authorization':`Bearer ${APIKey}`
+    'Authorization':`Bearer ${APIKey}`,
+    // 'X-Requested-With': '*'
   })
 }
 
@@ -24,7 +25,7 @@ export class YelpSearchService {
   ) { }
 
   
-  getFoods(event, location, price): Observable<any> {
+  getFoods(event, price,  location): Observable<any> {
     event.preventDefault();
     return this.http.get(`${yelpBase}/search?location=${location}&price=${price}&open_now=true`, Options)
     .pipe()

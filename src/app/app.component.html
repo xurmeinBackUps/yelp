@@ -4,28 +4,52 @@
     {{ title }}!
   </h1>
   <form [formGroup]="search" style="float:center" (ngSubmit)="foodMe(event)">
-    <div style="text-align: center">
-        <select formControlName="price">
-          <option name="price" placeholder="select your price range"></option>
-          <option value="1">$</option>
-          <option value="2">$$</option>
-          <option value="3">$$$</option>
-          <option value="4">$$$$</option>
-        </select>
-      <label>
-        how much can you spend?
-      </label>
-    </div>
-    <div style="text-align:right">
+    
+    <div>
       <caption>
       <input type="text" formControlName="zip">
         where you at? as in, your ZIP code
       </caption>
     </div>
+    <div style="text-align: center">
+      <select formControlName="price">
+        <option name="price" placeholder="select your price range"></option>
+        <option value="1">$</option>
+        <option value="2">$$</option>
+        <option value="3">$$$</option>
+        <option value="4">$$$$</option>
+      </select>
+    <label>
+      how much can you spend?
+    </label>
+   
+  </div>
   </form>
-  <button type="submit" name="SubmitSearch" (click)="foodMe()">Find a place to eat</button>
+  <button type="submit" name="search" (click)="foodMe()">Find a place to eat</button>
 </div>
 
-  <section *ngFor="let result of results">
-    {{ results | json }}
-  </section>
+<section *ngIf="food">
+  <h3 *ngIf="food.name">
+    <a href="food.url" *ngIf="food.url" target="_blank">{{food.name}}</a>
+  </h3>
+  <p *ngIf="food.transactions">offers: {{food.transactions}}</p>
+  <p>rating:</p><img src="../assets/stars/regular_0.png" *ngIf="food.rating=== 0.0" /><p *ngIf="food.review_count">{{food.review_count}} reviews</p>
+                <img src="../assets/stars/regular_1.png" *ngIf="food.rating=== 1.0" />
+                <img src="../assets/stars/regular_1_half.png" *ngIf="food.rating=== 1.5" />
+                <img src="../assets/stars/regular_2.png" *ngIf="food.rating=== 2.0" />
+                <img src="../assets/stars/regular_2_half.png" *ngIf="food.rating === 2.5" />
+                <img src="../assets/stars/regular_3.png" *ngIf="food.rating === 3.0" />
+                <img src="../assets/stars/regular_3_half.png" *ngIf="food.rating === 3.5" />
+                <img src="../assets/stars/regular_4.png" *ngIf="food.rating === 4.0" />
+                <img src="../assets/stars/regular_4_half.png" *ngIf="food.rating === 4.5" />
+                <img src="../assets/stars/regular_5.png" *ngIf="food.rating === 5.0" />
+  <p *ngIf="food.display_phone">{{food.display_phone}}</p>
+
+  <!-- <p *ngif="food.location">{{food.location}}</p> -->
+  <!-- <p *ngIf="food.location.city">{{food.location.city}}</p>
+  <p *ngIf="food.location.state">{{food.location.state}}</p>
+  <p *ngIf="food.location.zip_code">{{food.location.zip_code}}</p>
+  <h6 *ngIf="food.location.country.value===US">THESE UNITED STATES OF AMERICA</h6> -->
+  <img src="{{food.image_url}}" *ngIf="food.image_url" />
+
+</section>
